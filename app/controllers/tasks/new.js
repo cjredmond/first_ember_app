@@ -8,8 +8,21 @@ export default Ember.Controller.extend({
       var date = this.get('date');
 
       //Create New Task
+      var newTask = this.store.createRecord('task', {
+        title: title,
+        description: description,
+        date: new Date(date)
+      });
 
-      
+      //Save to Database
+      newTask.save();
+
+      // Clear Form
+      this.setProperties({
+        title: '',
+        description: '',
+        date: ''
+      })
     }
   }
 });
